@@ -1,41 +1,53 @@
-import React from 'react';
 import '../less/app.less';
 
+import React from 'react';
+import Intro from './slides/intro';
+import TypicalExample from './slides/typical-example';
+import $ from 'jquery';
+
+const SLIDES = [
+  Intro,
+  TypicalExample
+];
+
 export default class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      index: 0
+    };
+  }
+
+  componentDidMount() {
+    $(document).on('dblclick', this.onDocumentClick.bind(this));
+  }
+
+  onDocumentClick(e) {
+    let nextIndex = 0;
+
+    if (e.which === 1) {
+      nextIndex = this.state.index + 1;
+      if (nextIndex > SLIDES.length - 1) {
+        nextIndex = 0;
+      }
+    } else {
+      nextIndex = Math.max(0, this.state.index - 1);
+    }
+    this.setState({
+      index: nextIndex
+    });
+  }
+
   render() {
     return (
-      <div>
-        <nav className="navbar navbar-inverse navbar-fixed-top">
-          <div className="container">
-            <div className="navbar-header">
-              <button type="button" className="navbar-toggle collapsed"
-                data-toggle="collapse" data-target="#navbar"
-                aria-expanded="false" aria-controls="navbar">
-                <span className="sr-only">Toggle navigation</span>
-                <span className="icon-bar"></span>
-                <span className="icon-bar"></span>
-                <span className="icon-bar"></span>
-              </button>
-              <a className="navbar-brand" href="#">Project name</a>
-            </div>
-            <div id="navbar" className="collapse navbar-collapse">
-              <ul className="nav navbar-nav">
-                <li className="active"><a href="#">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-              </ul>
-            </div>
-          </div>
-        </nav>
+      <div className="container">
+        {SLIDES.map(function (s, index) {
+          const Slide = s;
 
-        <div className="container">
-          <div className="starter-template">
-            <h1>Bootstrap starter template</h1>
-            <p className="lead">Use this document as
-              a way to quickly start any new project.<br/>
-              All you get is this text and a mostly barebones HTML document.</p>
-          </div>
-        </div>
+          return (
+            <Slide hidden={this.state.index !== SLIDES.indexOf(Slide)} key={index} />
+          );
+        }.bind(this))}
       </div>
     );
   }
