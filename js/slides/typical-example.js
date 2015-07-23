@@ -1,6 +1,42 @@
 import React from 'react';
 import BaseSlide from './base';
 
+const Code = React.createClass({
+  render() {
+    return (
+      <pre>
+        <code>
+{`
+(function (ldm, $, undefined) {
+
+  // revealing module pattern
+  ldm.utils = new (function () {
+
+    // private properties
+    //var privateProperty = true;
+
+    //Private Methods
+    function defineTrim() {
+        if (!String.prototype.trim) {
+            String.prototype.trim = function() {
+                return this.replace(/^\s+|\s+$/g, '');
+            };
+        }
+    }
+
+    return {
+      //Public Method
+      initialise: function () {
+        defineTrim();
+    }
+`
+}
+        </code>
+      </pre>
+    );
+  }
+});
+
 export default class Slide extends BaseSlide {
   constructor(props) {
     super(props);
@@ -10,8 +46,7 @@ export default class Slide extends BaseSlide {
     return (
       <div>
         <h1>Bootstrap starter template Slide 3</h1>
-        <h2>Use this document as
-          a way to quickly start any new project.</h2>
+        <Code />
       </div>
     );
   }
