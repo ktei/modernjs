@@ -9,8 +9,8 @@ export default class Slide extends BaseSlide {
   renderContent() {
     return (
       <div>
-        <h1>Make a Better World</h1>
-        <h2>Improve your JS programming experience</h2>
+        <h1 className="extra-large">But... Talk is CHEAP</h1>
+        <h1>Show Me The Code</h1>
       </div>
     );
   }

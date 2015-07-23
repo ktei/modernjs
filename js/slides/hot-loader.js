@@ -9,8 +9,8 @@ export default class Slide extends BaseSlide {
   renderContent() {
     return (
       <div>
-        <h1>Make a Better World</h1>
-        <h2>Improve your JS programming experience</h2>
+        <h1>React Hot Loader</h1>
+        <h2>No more browser page refreshing!!!</h2>
       </div>
     );
   }

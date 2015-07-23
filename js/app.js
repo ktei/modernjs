@@ -3,11 +3,31 @@ import '../less/app.less';
 import React from 'react';
 import Intro from './slides/intro';
 import TypicalExample from './slides/typical-example';
+import ExportImportCodeSnippet from './slides/export-import-code-snippet';
+import TalkIsCheap from './slides/talk-is-cheap';
+import How from './slides/how';
+import WebpackBabel from './slides/webpack-babel';
+import Framework from './slides/framework';
+import HotLoader from './slides/hot-loader';
+import Eslint from './slides/eslint';
+import Css from './slides/css';
+import Recap from './slides/recap';
+import Thanks from './slides/thanks';
 import $ from 'jquery';
 
 const SLIDES = [
-  Intro,
-  TypicalExample
+  { slide: Intro },
+  { slide: TypicalExample },
+  { slide: TalkIsCheap },
+  { slide: ExportImportCodeSnippet },
+  { slide: How },
+  { slide: WebpackBabel },
+  { slide: Framework },
+  { slide: HotLoader },
+  { slide: Eslint },
+  { slide: Css },
+  { slide: Recap },
+  { slide: Thanks }
 ];
 
 export default class App extends React.Component {
@@ -19,7 +39,7 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    $(document).on('dblclick', this.onDocumentClick.bind(this));
+    $(document).on('click', this.onDocumentClick.bind(this));
   }
 
   onDocumentClick(e) {
@@ -31,7 +51,10 @@ export default class App extends React.Component {
         nextIndex = 0;
       }
     } else {
-      nextIndex = Math.max(0, this.state.index - 1);
+      nextIndex = this.state.index - 1;
+      if (nextIndex < 0) {
+        nextIndex = SLIDES.length - 1;
+      }
     }
     this.setState({
       index: nextIndex
@@ -42,10 +65,10 @@ export default class App extends React.Component {
     return (
       <div className="container">
         {SLIDES.map(function (s, index) {
-          const Slide = s;
+          const Slide = s.slide;
 
           return (
-            <Slide hidden={this.state.index !== SLIDES.indexOf(Slide)} key={index} />
+            <Slide hidden={this.state.index !== SLIDES.indexOf(s)} key={index} />
           );
         }.bind(this))}
       </div>
