@@ -39,18 +39,25 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    $(document).on('click', this.onDocumentClick.bind(this));
+    $(document).on('click keydown', this.onDocumentClick.bind(this));
   }
 
   onDocumentClick(e) {
     let nextIndex = 0;
+    let windowSize = 0;
+    let currentPosX = 0;
+    let right = 0;
 
-    if (e.which === 1) {
+    windowSize = $(window).width();
+    currentPosX = e.pageX;
+    right = Math.round(currentPosX / windowSize);
+
+    if (e.which === 39 || right) {
       nextIndex = this.state.index + 1;
       if (nextIndex > SLIDES.length - 1) {
         nextIndex = 0;
       }
-    } else {
+    } else if (e.which === 37 || !right) {
       nextIndex = this.state.index - 1;
       if (nextIndex < 0) {
         nextIndex = SLIDES.length - 1;
