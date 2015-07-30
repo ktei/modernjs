@@ -18,15 +18,15 @@ var assetsLoaders = [
 ];
 
 module.exports = {
-  devtool: 'eval-source-map',
+  devtool: 'source-map',
   entry: [
     'webpack-dev-server/client?http://localhost:8080',
     'webpack/hot/only-dev-server',
-    './js/main.js'
+    './js/index.js'
   ],
   output:  {
     path: __dirname,
-    filename: './dist/main.js',
+    filename: './dist/index.js',
     publicPath: "http://localhost:8080/"
   },
   module: {

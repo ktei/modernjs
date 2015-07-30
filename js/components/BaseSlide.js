@@ -2,9 +2,9 @@ import React from 'react';
 import classnames from 'classnames';
 
 export default class Slide extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+  static propTypes = {
+    hidden: React.PropTypes.bool.isRequired
+  };
 
   render() {
     return (
@@ -14,5 +14,3 @@ export default class Slide extends React.Component {
     );
   }
 }
-
-Slide.propTypes = { hidden: React.PropTypes.bool };

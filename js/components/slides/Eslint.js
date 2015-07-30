@@ -1,11 +1,7 @@
 import React from 'react';
-import BaseSlide from './base';
+import BaseSlide from '../BaseSlide';
 
 export default class Slide extends BaseSlide {
-  constructor(props) {
-    super(props);
-  }
-
   renderContent() {
     return (
       <div>

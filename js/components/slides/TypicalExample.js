@@ -1,5 +1,5 @@
 import React from 'react';
-import BaseSlide from './base';
+import BaseSlide from '../BaseSlide';
 
 const CodeLeft = React.createClass({
   render() {
@@ -8,11 +8,24 @@ const CodeLeft = React.createClass({
         <code>
 {`
 // in ldm.utils file
-export default {
-  isAcn() {
-    // code omitted
-  }
-};
+(function (ldm, $, undefined) {
+
+  // revealing module pattern
+  ldm.utils = new (function () {
+
+    return {
+      //Public Method
+      isAcn: function () {
+        // code omitted
+      }
+    };
+
+  })();
+
+})();
+
+// to use isAcn in another file
+ldm.utils.isAcn()
 `
 }
         </code>
@@ -27,8 +40,12 @@ const CodeRight = React.createClass({
       <pre>
         <code>
 {`
+// in ldm.utils file
+def isAcn:
+  // code omitted
+
 // to use isAcn in another file
-import ldm from ldm.utils;
+from ldm import utils
 utils.isAcn()
 `
 }
@@ -46,7 +63,7 @@ export default class Slide extends BaseSlide {
   renderContent() {
     return (
       <div>
-        <h1>Export / Import</h1>
+        <h1>A Typical Example</h1>
         <div className="row">
           <div className="col-xs-6">
             <CodeLeft />
