@@ -13,10 +13,10 @@ export default class Slide extends Component {
     const { currentSlide } = this.props;
 
     return (
-      <Spring defaultValue={{ val: 0 }} endValue={{ val: currentSlide == HOT_LOADER ? 0 : 90 }}>
+      <Spring defaultValue={{ val: 0 }} endValue={{ val: currentSlide == HOT_LOADER ? 1 : 0 }}>
         {interpolated => (
           <div className="slide" style={{
-              transform: `skewX(${interpolated.val}deg)`,
+              opacity: interpolated.val,
               zIndex: currentSlide == HOT_LOADER ? 1 : 0 
           }}>
             <h1>React Hot Loader</h1>
