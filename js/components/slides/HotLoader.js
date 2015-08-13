@@ -17,7 +17,7 @@ export default class Slide extends Component {
         {interpolated => (
           <div className="slide" style={{ opacity: interpolated.val, zIndex: currentSlide == HOT_LOADER ? 1 : 0 }}>
             <h1>React Hot Loader</h1>
-            <h2>No more browser page refreshing!!!</h2>
+            <h2>No more browser page refreshing!!! (Almost)</h2>
           </div>
         )}
       </Spring>
