@@ -13,9 +13,12 @@ export default class Slide extends Component {
     const { currentSlide } = this.props;
 
     return (
-      <Spring defaultValue={{ val: 0 }} endValue={{ val: currentSlide == FRAMEWORK ? 1 : 0 }}>
+      <Spring defaultValue={{ val: 90 }} endValue={{ val: currentSlide == FRAMEWORK ? 0 : 90 }}>
         {interpolated => (
-          <div className="slide" style={{ opacity: interpolated.val, zIndex: currentSlide == FRAMEWORK ? 1 : 0 }}>
+          <div className="slide" style={{
+              transform: `skewY(${interpolated.val}deg)`,
+              zIndex: currentSlide == FRAMEWORK ? 1 : 0 
+          }}>
             <h1 className="extra-large">Framework</h1>
             <h2>
               <a href="https://facebook.github.io/react/">React</a> (Virtual DOM)
