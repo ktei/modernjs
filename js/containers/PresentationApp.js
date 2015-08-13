@@ -18,7 +18,7 @@ import Css from '../components/slides/Css';
 import Recap from '../components/slides/Recap';
 import Thanks from '../components/slides/Thanks';
 
-import * as PresentationActions from '../actions/PresentationActions';
+import { nextSlide, prevSlide } from '../actions/PresentationActions';
 
 @connect(state => ({
   presentation: state.presentation
@@ -33,9 +33,9 @@ export default class PresentationApp extends Component {
     const { dispatch } = this.props;
 
     if (e.which === 1) {
-      dispatch(PresentationActions.nextSlide());
+      dispatch(nextSlide());
     } else {
-      dispatch(PresentationActions.prevSlide());
+      dispatch(prevSlide());
     }
   }
 
