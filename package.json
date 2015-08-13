@@ -25,6 +25,7 @@
     "immutable": "^3.7.4",
     "jquery": "^2.1.4",
     "react": "^0.13.3",
+    "react-motion": "^0.2.7",
     "redux": "^0.12.0"
   }
 }

@@ -3,22 +3,6 @@ import React, { Component } from 'react';
 import { connect } from 'redux/react';
 /*eslint-disable no-unused-vars*/
 import $ from 'jquery';
-import {
-  INTRO,
-  SAM,
-  DRAGON_GLASS,
-  TYPICAL_EXAMPLE,
-  TALK_IS_CHEAP,
-  EXPORT_IMPORT_CODE_SNIPPET,
-  HOW,
-  WEBPACK_BABEL,
-  FRAMEWORK,
-  HOT_LOADER,
-  ESLINT,
-  CSS,
-  RECAP,
-  THANKS
-} from '../constants/Slides';
 import Intro from '../components/slides/Intro';
 import Sam from '../components/slides/Sam';
 import DragonGlass from '../components/slides/DragonGlass';
@@ -40,11 +24,6 @@ import * as PresentationActions from '../actions/PresentationActions';
   presentation: state.presentation
 }))
 export default class PresentationApp extends Component {
-  static propTypes = {
-    presentation: React.PropTypes.object.isRequired,
-    dispatch: React.PropTypes.func.isRequired
-  };
-
   componentDidMount() {
     this.documentClickHandler = this.handleDocumentClick.bind(this);
     $(document).on('click', this.documentClickHandler);
@@ -65,32 +44,30 @@ export default class PresentationApp extends Component {
   }
 
   render() {
-    const { currentSlide } = this.props.presentation;
-
     return (
       <div className="container">
-        {this.renderSlides(currentSlide)}
+        {this.renderSlides()}
       </div>
     );
   }
 
-  renderSlides(currentSlide) {
+  renderSlides() {
     return (
       <div>
-        <Intro hidden={currentSlide != INTRO} />
-        <Sam hidden={currentSlide != SAM} />
-        <DragonGlass hidden={currentSlide != DRAGON_GLASS} />
-        <TypicalExample hidden={currentSlide != TYPICAL_EXAMPLE} />
-        <TalkIsCheap hidden={currentSlide != TALK_IS_CHEAP} />
-        <ExportImportCodeSnippet hidden={currentSlide != EXPORT_IMPORT_CODE_SNIPPET} />
-        <How hidden={currentSlide != HOW} />
-        <WebpackBabel hidden={currentSlide != WEBPACK_BABEL} />
-        <Framework hidden={currentSlide != FRAMEWORK} />
-        <HotLoader hidden={currentSlide != HOT_LOADER} />
-        <Eslint hidden={currentSlide != ESLINT} />
-        <Css hidden={currentSlide != CSS} />
-        <Recap hidden={currentSlide != RECAP} />
-        <Thanks hidden={currentSlide != THANKS} />
+        <Intro />
+        <Sam />
+        <DragonGlass />
+        <TypicalExample />
+        <TalkIsCheap />
+        <ExportImportCodeSnippet />
+        <How />
+        <WebpackBabel />
+        <Framework />
+        <HotLoader />
+        <Eslint />
+        <Css />
+        <Recap />
+        <Thanks />
       </div>
     );
   }

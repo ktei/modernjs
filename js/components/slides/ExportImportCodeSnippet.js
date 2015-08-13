@@ -1,5 +1,9 @@
-import React from 'react';
-import BaseSlide from '../BaseSlide';
+import React, { Component } from 'react';
+/*eslint-disable no-unused-vars*/
+import { connect } from 'redux/react';
+/*eslint-disable no-unused-vars*/
+import { Spring } from 'react-motion';
+import { EXPORT_IMPORT_CODE_SNIPPET } from '../../constants/Slides';
 
 const CodeLeft = React.createClass({
   render() {
@@ -8,10 +12,11 @@ const CodeLeft = React.createClass({
         <code>
 {`
 // in ldm.utils file
-export default {
-  isAcn() {
-    // code omitted
-  }
+export function isAcn(number) {
+  // code omitted
+  // code omitted
+  // code omitted
+  // code omitted
 };
 `
 }
@@ -28,8 +33,9 @@ const CodeRight = React.createClass({
         <code>
 {`
 // to use isAcn in another file
-import ldm from ldm.utils;
-utils.isAcn()
+import isAcn from ldm.utils;
+// invoke it as normal function:
+let thisIsAcn = isAcn('1234567');
 `
 }
         </code>
@@ -38,20 +44,29 @@ utils.isAcn()
   }
 });
 
-export default class Slide extends BaseSlide {
-  renderContent() {
+@connect(state => ({
+  currentSlide: state.presentation.currentSlide
+}))
+export default class Slide extends Component {
+  render() {
+    const { currentSlide } = this.props;
+
     return (
-      <div>
-        <h1>Export / Import</h1>
-        <div className="row">
-          <div className="col-xs-6">
-            <CodeLeft />
+      <Spring defaultValue={{ val: 0 }} endValue={{ val: currentSlide == EXPORT_IMPORT_CODE_SNIPPET ? 1 : 0 }}>
+        {interpolated => (
+          <div className="slide" style={{ opacity: interpolated.val }}>
+            <h1>Export / Import</h1>
+            <div className="row">
+              <div className="col-xs-6">
+                <CodeLeft />
+              </div>
+              <div className="col-xs-6">
+                <CodeRight />
+              </div>
+            </div>
           </div>
-          <div className="col-xs-6">
-            <CodeRight />
-          </div>
-        </div>
-      </div>
+        )}
+      </Spring>
     );
   }
 }

@@ -1,5 +1,9 @@
-import React from 'react';
-import BaseSlide from '../BaseSlide';
+import React, { Component } from 'react';
+/*eslint-disable no-unused-vars*/
+import { connect } from 'redux/react';
+/*eslint-disable no-unused-vars*/
+import { Spring } from 'react-motion';
+import { TYPICAL_EXAMPLE } from '../../constants/Slides';
 
 const CodeLeft = React.createClass({
   render() {
@@ -43,8 +47,9 @@ const CodeRight = React.createClass({
 // in ldm.utils file
 def isAcn:
   // code omitted
+  // code omitted
 
-// to use isAcn in another file
+// then, to use isAcn in another file
 from ldm import utils
 utils.isAcn()
 `
@@ -55,24 +60,29 @@ utils.isAcn()
   }
 });
 
-export default class Slide extends BaseSlide {
-  constructor(props) {
-    super(props);
-  }
+@connect(state => ({
+  currentSlide: state.presentation.currentSlide
+}))
+export default class Slide extends Component {
+  render() {
+    const { currentSlide } = this.props;
 
-  renderContent() {
     return (
-      <div>
-        <h1>A Typical Example</h1>
-        <div className="row">
-          <div className="col-xs-6">
-            <CodeLeft />
+      <Spring defaultValue={{ val: 0 }} endValue={{ val: currentSlide == TYPICAL_EXAMPLE ? 1 : 0 }}>
+        {interpolated => (
+          <div className="slide" style={{ opacity: interpolated.val }}>
+            <h1>A Typical Example</h1>
+            <div className="row">
+              <div className="col-xs-6">
+                <CodeLeft />
+              </div>
+              <div className="col-xs-6">
+                <CodeRight />
+              </div>
+            </div>
           </div>
-          <div className="col-xs-6">
-            <CodeRight />
-          </div>
-        </div>
-      </div>
+        )}
+      </Spring>
     );
   }
 }
