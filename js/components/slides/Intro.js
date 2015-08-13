@@ -13,9 +13,9 @@ export default class Slide extends Component {
     const { currentSlide } = this.props;
 
     return (
-      <Spring defaultValue={{ val: 0 }} endValue={{ val: currentSlide == INTRO ? 1 : 0 }}>
+      <Spring defaultValue={{ val: 0 }} endValue={{ val: currentSlide == INTRO ? 100 : -4000 }}>
         {interpolated => (
-          <div className="slide" style={{ opacity: interpolated.val, zIndex: currentSlide == INTRO ? 1 : 0 }}>
+          <div className="slide" style={{ left: `${interpolated.val}px`, zIndex: currentSlide == INTRO ? 1 : 0 }}>
             <h1>Make a Better World</h1>
             <h2>Improve your front-end programming experience</h2>
           </div>

@@ -68,9 +68,12 @@ export default class Slide extends Component {
     const { currentSlide } = this.props;
 
     return (
-      <Spring defaultValue={{ val: 0 }} endValue={{ val: currentSlide == TYPICAL_EXAMPLE ? 1 : 0 }}>
+      <Spring defaultValue={{ val: 270 }} endValue={{ val: currentSlide == TYPICAL_EXAMPLE ? 0 : 270 }}>
         {interpolated => (
-          <div className="slide" style={{ opacity: interpolated.val, zIndex: currentSlide == TYPICAL_EXAMPLE ? 1 : 0 }}>
+          <div className="slide" style={{
+            transform: `rotateX(${interpolated.val}deg)`,
+            zIndex: currentSlide == TYPICAL_EXAMPLE ? 1 : 0
+          }}>
             <h1>A Typical Example</h1>
             <div className="row">
               <div className="col-xs-6">

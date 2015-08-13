@@ -52,9 +52,12 @@ export default class Slide extends Component {
     const { currentSlide } = this.props;
 
     return (
-      <Spring defaultValue={{ val: 0 }} endValue={{ val: currentSlide == EXPORT_IMPORT_CODE_SNIPPET ? 1 : 0 }}>
+      <Spring defaultValue={{ val: 270 }} endValue={{ val: currentSlide == EXPORT_IMPORT_CODE_SNIPPET ? 0 : 270 }}>
         {interpolated => (
-          <div className="slide" style={{ opacity: interpolated.val, zIndex: currentSlide == EXPORT_IMPORT_CODE_SNIPPET ? 1 : 0 }}>
+          <div className="slide" style={{
+            transform: `rotateY(${interpolated.val}deg)`,
+            zIndex: currentSlide == EXPORT_IMPORT_CODE_SNIPPET ? 1 : 0
+          }}>
             <h1>Export / Import</h1>
             <div className="row">
               <div className="col-xs-6">
