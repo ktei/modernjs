@@ -15,7 +15,7 @@ export default class Slide extends Component {
     return (
       <Spring defaultValue={{ val: 0 }} endValue={{ val: currentSlide == DRAGON_GLASS ? 1 : 0 }}>
         {interpolated => (
-          <div className="slide" style={{ opacity: interpolated.val }}>
+          <div className="slide" style={{ opacity: interpolated.val, zIndex: currentSlide == DRAGON_GLASS ? 1 : 0 }}>
             <h1 className="extra-large">Dragon Glass!!!</h1>
           </div>
         )}

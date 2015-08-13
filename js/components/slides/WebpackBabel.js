@@ -15,7 +15,7 @@ export default class Slide extends Component {
     return (
       <Spring defaultValue={{ val: 0 }} endValue={{ val: currentSlide == WEBPACK_BABEL ? 1 : 0 }}>
         {interpolated => (
-          <div className="slide" style={{ opacity: interpolated.val }}>
+          <div className="slide" style={{ opacity: interpolated.val, zIndex: currentSlide == WEBPACK_BABEL ? 1 : 0 }}>
             <h1>Webpack + Babel</h1>
             <h2>
               Start writing ES6 JS from NOW, or even ES7!

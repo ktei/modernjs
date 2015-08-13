@@ -70,7 +70,7 @@ export default class Slide extends Component {
     return (
       <Spring defaultValue={{ val: 0 }} endValue={{ val: currentSlide == TYPICAL_EXAMPLE ? 1 : 0 }}>
         {interpolated => (
-          <div className="slide" style={{ opacity: interpolated.val }}>
+          <div className="slide" style={{ opacity: interpolated.val, zIndex: currentSlide == TYPICAL_EXAMPLE ? 1 : 0 }}>
             <h1>A Typical Example</h1>
             <div className="row">
               <div className="col-xs-6">

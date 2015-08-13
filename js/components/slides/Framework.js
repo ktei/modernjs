@@ -15,7 +15,7 @@ export default class Slide extends Component {
     return (
       <Spring defaultValue={{ val: 0 }} endValue={{ val: currentSlide == FRAMEWORK ? 1 : 0 }}>
         {interpolated => (
-          <div className="slide" style={{ opacity: interpolated.val }}>
+          <div className="slide" style={{ opacity: interpolated.val, zIndex: currentSlide == FRAMEWORK ? 1 : 0 }}>
             <h1 className="extra-large">Framework</h1>
             <h2>
               <a href="https://facebook.github.io/react/">React</a> (Virtual DOM)

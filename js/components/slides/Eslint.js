@@ -15,7 +15,7 @@ export default class Slide extends Component {
     return (
       <Spring defaultValue={{ val: 0 }} endValue={{ val: currentSlide == ESLINT ? 1 : 0 }}>
         {interpolated => (
-          <div className="slide" style={{ opacity: interpolated.val }}>
+          <div className="slide" style={{ opacity: interpolated.val, zIndex: currentSlide == ESLINT ? 1 : 0 }}>
             <h1 className="extra-large">Lint Your JS</h1>
             <h2>
               Reduce silly mistakes

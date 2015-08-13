@@ -15,7 +15,7 @@ export default class Slide extends Component {
     return (
       <Spring defaultValue={{ val: 0 }} endValue={{ val: currentSlide == INTRO ? 1 : 0 }}>
         {interpolated => (
-          <div className="slide" style={{ opacity: interpolated.val }}>
+          <div className="slide" style={{ opacity: interpolated.val, zIndex: currentSlide == INTRO ? 1 : 0 }}>
             <h1>Make a Better World</h1>
             <h2>Improve your front-end programming experience</h2>
           </div>

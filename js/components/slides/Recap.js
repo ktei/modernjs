@@ -15,7 +15,7 @@ export default class Slide extends Component {
     return (
       <Spring defaultValue={{ val: 0 }} endValue={{ val: currentSlide == RECAP ? 1 : 0 }}>
         {interpolated => (
-          <div className="slide" style={{ opacity: interpolated.val }}>
+          <div className="slide" style={{ opacity: interpolated.val, zIndex: currentSlide == RECAP ? 1 : 0 }}>
             <h1>Basically... (as Billy usually says)</h1>
             <ul className="large">
               <li>Webpack + Babel: Writing JS of next generation</li>
